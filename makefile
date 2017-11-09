@@ -1,3 +1,3 @@
 all:
-	g++ -std=c++11 -c *.cpp
-	g++ -std=c++11 *.o -o huffman.out
+	g++ -std=c++14 -c *.cpp
+	g++ -std=c++14 *.o -o huffman.out
