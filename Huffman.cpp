@@ -13,21 +13,20 @@
 // add a new <char, std::string> to the codes map with the character and its code for each leaf node
 // using std::make_pair (see create_freq)
 void Huffman::create_codes(HNode* node, const std::string& code){
-	std::cout << std::endl;
-	std::cout << "Inside Create_codes" << std::endl;
-
-	if (node->value == '*') {
+	std::string tmp = code;
+	if (node->value) {
 		if (node->left) {
+			tmp += code;
 			create_codes(node->left, "0");
-			auto iter = codes.insert(std::pair<char, std::string>(node->value, "0"));
-			std::cout << node->left->value;
+			auto iter = codes.insert(std::pair<char, std::string>(node->left->value, tmp));
 			//iter.second += "0";
 		}
 		if (node->right) {
+			tmp += code;
 			create_codes(node->right, "1");
-			auto iter = codes.insert(std::pair<char, std::string>(node->value, "1"));
-			std::cout << node->left->value;
+			auto iter = codes.insert(std::pair<char, std::string>(node->right->value, tmp));
 			//iter.second += "1";
+			//create_codes(node->right, "1");
 		}
 	}
 }
@@ -40,7 +39,45 @@ void Huffman::create_codes(HNode* node, const std::string& code){
 // the characters from each HNode will be used (inner nodes should use '*')
 // there is no return value as s is being edited with each resursive call
 void Huffman::serialize_tree(HNode* node, std::string& s) {
+	if (node) {
+		s += node->value;
+		if (node->left) {
+			serialize_tree(node->left, s);
+		}
+		if (node->right) {
+			serialize_tree(node->right, s);
+		}
+		if (node->left == NULL)
+			s += '/';
+		if(node->right == NULL)
+			s += '/';
+	}
+	
+	/*
+	if (node) {
+		s += node->value;
+		serialize_tree(node->left, s);
+		s += '/';
+		serialize_tree(node->right, s);
+	}*/
 
+
+	//s += '/';
+
+	/*
+	if (node->value=='*') {
+		s += node->value;
+		if (node->left) {
+			s += node->left->value;
+			serialize_tree(node->left, s);
+			s += "/";
+		}
+		if (node->right) {
+			s += node->right->value;
+			serialize_tree(node->right, s);
+			s += "/";
+		}	
+	}*/
 }
 
 // implement this function
@@ -50,7 +87,12 @@ void Huffman::serialize_tree(HNode* node, std::string& s) {
 // if the code for a is 1, the code for b is 01, and the code for c is 00
 // the code for the word 'bad' would be '01100'
 void Huffman::encode_string(const std::string& input, std::string& encoded_string) {
-
+	for (int i = 0; i < input.size(); ++i) {
+			auto iter = codes.find(input[i]);
+			if (iter != codes.end()) {
+				encoded_string += iter->second; 
+			}			
+	}
 }
 
 Encoded Huffman::encode(const std::string& s) {
@@ -87,9 +129,6 @@ Encoded Huffman::encode(const std::string& s) {
 		heap.enqueue(new HNode(heap.dequeue(), heap.dequeue()));
 		heap.print();
 	}
-	heap.print();
-
-	
 
 	// store the pointer to the huffman tree
 	HNode* huffman_tree = heap.dequeue();

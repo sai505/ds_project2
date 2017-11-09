@@ -10,7 +10,7 @@
 #include <cassert>
 
 struct HNode {
-
+	//constant pointer
 	HNode* left=0, *right=0;
 
 	// set the default value to "*" and change it when you have an actual value

@@ -80,25 +80,42 @@ void Heap::enqueue(HNode* new_node) {
 		fix_up(position);
 	}
 	//store vacant slot
+	tree[position] = new_node;
+	/*
+	tree[position]->left = new_node->left;
+	tree[position]->right = new_node->right;
 	tree[position]->value = new_node->value;
-	tree[position]->weight = new_node->weight;
+	tree[position]->weight = new_node->weight;*/
 }
 // fix the heap from a specific index up
 
 void Heap::fix_up(const int& index) {
-	
+	int tmp = 0;
+	if (index > 1 && index % 2 == 0) {
+		tmp = index - 1;
+	}
+	else {
+		tmp = index;
+	}
 	//demote parents 
-	tree[index]->value = tree[index / 2]->value;
-	tree[index]->weight = tree[index / 2]->weight;
+	//tree[index]->value = tree[index / 2]->value;
+	//tree[index]->weight = tree[index / 2]->weight;
+	tree[index] = tree[tmp / 2];
 
-	position = index / 2;
+	position = tmp / 2;
 }
 
 // remove the smallest element
 HNode* Heap::dequeue() {
 	//store minimum
-	HNode* tmp = tree[0];
-	HNode* pop = new HNode(tmp->value, tmp->weight);
+	HNode* pop = tree[0];
+	//possible bug: it creates new node, but it doesn't assign pointer
+	//HNode* pop = new HNode(tmp->value, tmp->weight);
+	//alternative
+	///HNode* pop = new HNode(tmp->value, tmp->weight);
+	//pop->left = tmp->left;
+	//pop->right = tmp->right;
+
 	//remove last element
 	HNode* back = tree.back();
 	tree.pop_back();
@@ -107,8 +124,9 @@ HNode* Heap::dequeue() {
 
 	
 	if (position >= 0) {
-		tree[0]->weight = back->weight;
-		tree[0]->value = back->value;
+		//tree[0]->weight = back->weight;
+		//tree[0]->value = back->value;
+		tree[0] = back;
 		fix_down(count);
 	}
 	return pop;
@@ -117,8 +135,9 @@ HNode* Heap::dequeue() {
 
 // fix the tree after replacing the smallest element
 void Heap::fix_down(const int& lastindex) {
-	int root_weight = tree[0]->weight;
-	int root_value = tree[0]->value;   
+	//int root_weight = tree[0]->weight;
+	//int root_value = tree[0]->value;   
+	HNode* root_tmp = tree[0];
 
 	bool loop = true;
 	int index = 0;
@@ -128,15 +147,22 @@ void Heap::fix_down(const int& lastindex) {
 
 		if (childIndex<position) {
 			int child = tree[index * 2 + 1]->weight;
-
+			
+			if (2 * index + 2 <= position && tree[2 * index + 2]->weight == child) {
+				if (tree[2 * index + 2]->value < tree[index * 2 + 1]->value) {
+					childIndex = 2 * index + 2;
+					child = tree[2 * index + 2]->weight;
+				}
+			}
 			if (2 * index + 2 <= position && tree[2 * index + 2]->weight < child) {
 				childIndex = 2 * index + 2; 
 				child = tree[2*index+2]->weight; 
 			}
 
-			if (child < root_weight) {
-				tree[index]->weight = tree[childIndex]->weight;
-				tree[index]->value = tree[childIndex]->value;
+			if (child < root_tmp->weight) {
+				//tree[index]->weight = tree[childIndex]->weight;
+				//tree[index]->value = tree[childIndex]->value;
+				tree[index] = tree[childIndex];
 				index = childIndex;
 			}
 
@@ -144,8 +170,9 @@ void Heap::fix_down(const int& lastindex) {
 		}
 		else { loop = false; }
 	}
-	tree[index]->weight = root_weight;
-	tree[index]->value = root_value;
+	//tree[index]->weight = root_weight;
+	//tree[index]->value = root_value;
+	tree[index] = root_tmp;
 }
 
 void Heap::clear() {

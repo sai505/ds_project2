@@ -35,11 +35,22 @@ HNode::HNode(const char& s, const int& t) {
 }
 
 //constructor for internal nodes
-HNode::HNode(HNode* l,HNode* r) {
+HNode::HNode(HNode* l,HNode*r) {
 	
-	weight = l->weight + r->weight;
-	left = l;
-	right = r;
+	bool bgeq = l->weight <= r->weight;
+
+	if (bgeq) {
+		weight = l->weight + r->weight;
+		left = l;
+		right = r;
+	}
+	else {
+		weight = l->weight + r->weight;
+		left = r;
+		right = l;
+	}
+
+
 	/*
 	bool bgeq = l->weight <= r->weight;
 	bool bg = l->weight < r->weight;
