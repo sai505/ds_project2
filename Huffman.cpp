@@ -1,8 +1,6 @@
 // huffman.cpp -- Huffman tree class
 // c. 2015 A. Deeter
 // Revision 2017. Seung Jun Lee
-
-
 #include "Huffman.hpp"
 #include <iostream>
 
@@ -14,7 +12,10 @@
 // and '1' if youre recursing right
 // add a new <char, std::string> to the codes map with the character and its code for each leaf node
 // using std::make_pair (see create_freq)
-void Huffman::create_codes(HNode* node, const std::string& code)  {
+void Huffman::create_codes(HNode* node, const std::string& code){
+	std::cout << std::endl;
+	std::cout << "Inside Create_codes" << std::endl;
+
 	if (node->value == '*') {
 		if (node->left) {
 			create_codes(node->left, "0");
