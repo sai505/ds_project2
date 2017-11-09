@@ -19,11 +19,13 @@ void Huffman::create_codes(HNode* node, const std::string& code)  {
 		if (node->left) {
 			create_codes(node->left, "0");
 			auto iter = codes.insert(std::pair<char, std::string>(node->value, "0"));
+			std::cout << node->left->value;
 			//iter.second += "0";
 		}
 		if (node->right) {
 			create_codes(node->right, "1");
 			auto iter = codes.insert(std::pair<char, std::string>(node->value, "1"));
+			std::cout << node->left->value;
 			//iter.second += "1";
 		}
 	}
