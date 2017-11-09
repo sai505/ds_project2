@@ -62,7 +62,7 @@ void Heap::print(){
 }
 // add an element to the tree
 void Heap::enqueue(HNode* new_node) {
-	tree.push_back(new HNode(NULL, 0));
+	tree.push_back(new HNode('', 0));
 	//std::cout << tree[0]->weight << tree[0]->value << std::endl;
 
 	count = tree.size();
