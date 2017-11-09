@@ -1,0 +1,14 @@
+﻿  test_huffman.cpp
+  Huffman.cpp
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\huffman.cpp(22): warning C4804: '+=': unsafe use of type 'bool' in operation
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\huffman.cpp(22): warning C4800: 'const char *': forcing value to bool 'true' or 'false' (performance warning)
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\huffman.cpp(27): warning C4804: '+=': unsafe use of type 'bool' in operation
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\huffman.cpp(27): warning C4800: 'const char *': forcing value to bool 'true' or 'false' (performance warning)
+  HNode.cpp
+  Heap.cpp
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\heap.cpp(68): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\heap.cpp(70): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\heap.cpp(105): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\heap.cpp(106): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  HuffmanCodeTrees.vcxproj -> C:\Users\jaylee.jaylee-PC\Desktop\under\fall2017\DS\Project2\HuffmanCodeTrees\x64\Debug\HuffmanCodeTrees.exe

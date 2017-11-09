@@ -1,0 +1,8 @@
+﻿  test_huffman.cpp
+  Huffman.cpp
+c:\users\jaylee.jaylee-pc\desktop\under\fall2017\ds\project2\huffmancodetrees\huffmancodetrees\huffman.cpp(96): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+Huffman.obj : error LNK2019: unresolved external symbol "public: void __thiscall Heap::enqueue(struct HNode *)" (?enqueue@Heap@@QAEXPAUHNode@@@Z) referenced in function "public: struct Encoded __thiscall Huffman::encode(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?encode@Huffman@@QAE?AUEncoded@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Huffman.obj : error LNK2019: unresolved external symbol "public: struct HNode * __thiscall Heap::dequeue(void)" (?dequeue@Heap@@QAEPAUHNode@@XZ) referenced in function "public: struct Encoded __thiscall Huffman::encode(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?encode@Huffman@@QAE?AUEncoded@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Huffman.obj : error LNK2019: unresolved external symbol "public: void __thiscall Heap::clear(void)" (?clear@Heap@@QAEXXZ) referenced in function "public: struct Encoded __thiscall Huffman::encode(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?encode@Huffman@@QAE?AUEncoded@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+C:\Users\jaylee.jaylee-PC\Desktop\under\fall2017\DS\Project2\HuffmanCodeTrees\Debug\HuffmanCodeTrees.exe : fatal error LNK1120: 3 unresolved externals
