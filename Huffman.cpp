@@ -13,20 +13,19 @@
 // add a new <char, std::string> to the codes map with the character and its code for each leaf node
 // using std::make_pair (see create_freq)
 void Huffman::create_codes(HNode* node, const std::string& code){
-	std::string tmp = code;
 	if (node->value) {
 		if (node->left) {
-			tmp += code;
-			create_codes(node->left, "0");
-			auto iter = codes.insert(std::pair<char, std::string>(node->left->value, tmp));
+			codes.insert(std::pair<char, std::string>(node->left->value, code+"0"));
+			create_codes(node->left, code+"0");
 			//iter.second += "0";
 		}
 		if (node->right) {
-			tmp += code;
-			create_codes(node->right, "1");
-			auto iter = codes.insert(std::pair<char, std::string>(node->right->value, tmp));
+			codes.insert(std::pair<char, std::string>(node->right->value, code+"1"));
+			create_codes(node->right, code+"1");
 			//iter.second += "1";
 			//create_codes(node->right, "1");
+		}else{
+			//codes.insert(std::pair<char, std::string>(node->value, code));
 		}
 	}
 }
@@ -136,6 +135,10 @@ Encoded Huffman::encode(const std::string& s) {
 	// create the codes for each leaf in the final tree
 	// the default code is an empty string, as the function recurses the code is added to
 	create_codes(huffman_tree, "");
+
+	for (auto it = codes.begin(); it != codes.end(); ++it) {
+		std::cout << it->first << " => " << it->second << std::endl;
+	}
 
 	// serialize the huffman tree
 	// store it within ret

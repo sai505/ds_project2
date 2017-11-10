@@ -27,6 +27,6 @@ int main() {
 
 	std::cout << "Input: A man a plan, a canal, Panama!" << std::endl;
 	Encoded a = h.encode("A man a plan, a canal, Panama!");
-	//std::cout << a.encoded_string << std::endl;
+	std::cout << a.encoded_string << std::endl;
 	std::cout << a.serialized_tree << std::endl;
 }
