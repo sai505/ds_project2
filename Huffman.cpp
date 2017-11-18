@@ -17,15 +17,10 @@ void Huffman::create_codes(HNode* node, const std::string& code){
 		if (node->left) {
 			codes.insert(std::pair<char, std::string>(node->left->value, code+"0"));
 			create_codes(node->left, code+"0");
-			//iter.second += "0";
 		}
 		if (node->right) {
 			codes.insert(std::pair<char, std::string>(node->right->value, code+"1"));
 			create_codes(node->right, code+"1");
-			//iter.second += "1";
-			//create_codes(node->right, "1");
-		}else{
-			//codes.insert(std::pair<char, std::string>(node->value, code));
 		}
 	}
 }
@@ -51,32 +46,6 @@ void Huffman::serialize_tree(HNode* node, std::string& s) {
 		if(node->right == NULL)
 			s += '/';
 	}
-	
-	/*
-	if (node) {
-		s += node->value;
-		serialize_tree(node->left, s);
-		s += '/';
-		serialize_tree(node->right, s);
-	}*/
-
-
-	//s += '/';
-
-	/*
-	if (node->value=='*') {
-		s += node->value;
-		if (node->left) {
-			s += node->left->value;
-			serialize_tree(node->left, s);
-			s += "/";
-		}
-		if (node->right) {
-			s += node->right->value;
-			serialize_tree(node->right, s);
-			s += "/";
-		}	
-	}*/
 }
 
 // implement this function

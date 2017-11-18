@@ -1,56 +1,6 @@
-/*
 //Heap.cpp
 //c. 2015 A. Deeter
 //Revision 2017. Seung Jun Lee
-
-2. Create MinHeap
-//DataType = class Heap: vector<HNode> tree, int position, int count
-//Method = enqueue, fix_up, deque, fix_down
-a) Enqueue = Add Node to Tree Vector at the Back
-void enqueue(HNode* new_node) {
-	1. Update Position = tree.size-1
-		2. while (position not reach root && parent(position / 2) > New Node)
-		- Promote : fix_up(position)
-		3. Otherwise
-		- Just store : Node[position] = newNode
-}
-
-b) Dequeue = Remove Node from Tree at the front
-HNode* dequeue() {
-	1. Pop node from at the top
-		2. fix_down(rightindex);
-}
-
-c) Fix Up = Promote Child Node(if parent bigger than child)
-void fix_up(const int& index) {
-	1. Promote Child : node[index] to Parent : node[index / 2]
-		2. Update position to Parent Index : position / 2
-}
-
-d) Fix Down = Demote Parent Node(if parent bigger than child)
-void fix_down(const int& index) {
-	1. root index = 1, lastindex = tree.size - 1, loop = true;
-	2. while (true) {
-		3. Update position = childindex:index * 2
-			4. If(position : Left childindex < lastindex) {
-			5. Store child = LeftChild
-				6. If(Right childindex : 2 * position + 1 < lastindex && Right Child < Left Child) {
-				7. Store child = RightChild, Update Position = position + 1;
-			}
-
-			6. If(Child < root) {
-				7. Promote Child = Node[index] = child
-					8. Update Parent Index to Child : index = position;
-			}
-
-			6. Else: Parent>Both Child = Exit while Loop
-		}
-
-		4. Else: No Children = Exit while loop
-	}
-}
-#endif
-*/
 
 #include "Heap.hpp"
 
@@ -81,14 +31,9 @@ void Heap::enqueue(HNode* new_node) {
 	}
 	//store vacant slot
 	tree[position] = new_node;
-	/*
-	tree[position]->left = new_node->left;
-	tree[position]->right = new_node->right;
-	tree[position]->value = new_node->value;
-	tree[position]->weight = new_node->weight;*/
 }
-// fix the heap from a specific index up
 
+// fix the heap from a specific index up
 void Heap::fix_up(const int& index) {
 	int tmp = 0;
 	if (index > 1 && index % 2 == 0) {
@@ -98,8 +43,6 @@ void Heap::fix_up(const int& index) {
 		tmp = index;
 	}
 	//demote parents 
-	//tree[index]->value = tree[index / 2]->value;
-	//tree[index]->weight = tree[index / 2]->weight;
 	tree[index] = tree[tmp / 2];
 
 	position = tmp / 2;
@@ -109,12 +52,6 @@ void Heap::fix_up(const int& index) {
 HNode* Heap::dequeue() {
 	//store minimum
 	HNode* pop = tree[0];
-	//possible bug: it creates new node, but it doesn't assign pointer
-	//HNode* pop = new HNode(tmp->value, tmp->weight);
-	//alternative
-	///HNode* pop = new HNode(tmp->value, tmp->weight);
-	//pop->left = tmp->left;
-	//pop->right = tmp->right;
 
 	//remove last element
 	HNode* back = tree.back();
@@ -124,8 +61,6 @@ HNode* Heap::dequeue() {
 
 	
 	if (position >= 0) {
-		//tree[0]->weight = back->weight;
-		//tree[0]->value = back->value;
 		tree[0] = back;
 		fix_down(count);
 	}
@@ -135,8 +70,6 @@ HNode* Heap::dequeue() {
 
 // fix the tree after replacing the smallest element
 void Heap::fix_down(const int& lastindex) {
-	//int root_weight = tree[0]->weight;
-	//int root_value = tree[0]->value;   
 	HNode* root_tmp = tree[0];
 
 	bool loop = true;
@@ -160,8 +93,6 @@ void Heap::fix_down(const int& lastindex) {
 			}
 
 			if (child < root_tmp->weight) {
-				//tree[index]->weight = tree[childIndex]->weight;
-				//tree[index]->value = tree[childIndex]->value;
 				tree[index] = tree[childIndex];
 				index = childIndex;
 			}
@@ -170,8 +101,6 @@ void Heap::fix_down(const int& lastindex) {
 		}
 		else { loop = false; }
 	}
-	//tree[index]->weight = root_weight;
-	//tree[index]->value = root_value;
 	tree[index] = root_tmp;
 }
 
