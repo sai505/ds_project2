@@ -19,7 +19,7 @@ public:
 	int count = 0;
 
 	Heap() {tree.resize(2);}
-	~Heap() {}
+	~Heap() { tree.shrink_to_fit();}
 
 	// add an element to the tree
 	void enqueue(HNode*);
