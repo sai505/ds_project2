@@ -106,6 +106,8 @@ void Heap::fix_down(const int& lastindex) {
 
 void Heap::clear() {
 	tree.clear();
+	tree.resize();
+	tree.shrink_to_fit();
 }
 
 
